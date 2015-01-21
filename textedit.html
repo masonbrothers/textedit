@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html><head>
+<meta name="description" content="A simple web text editor.">
+<meta name="keywords" content="Text,Editor,Text Editor">
+<meta name="author" content="Mason Brothers">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+
+<style>
+h1 {
+	text-align: center;
+}
+
+body {
+	background: linear-gradient(white,#abddee,white);
+	height:100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#printStuff {
+	background-color: white;
+	display: none;
+	height: 100%;
+	background-attachment: fixed;
+}
+
+p {
+	
+}
+
+#inputTable {
+	width=95%;
+}
+
+#footerbar {
+	border-color: black;
+}
+
+#footer {
+	text-align: center;
+	font-size: x-small;
+}
+
+#textareadiv {
+	text-align: center;
+}
+
+#notes {
+	font-size: small;
+}
+#textbox {
+	border-style: solid;
+	border-width: 3px;
+	border-color: black;
+	background-color: white;
+	height:100%;
+	width:95%;
+}
+
+
+
+
+
+</style>
+<title>Text Editor</title></head>
+<body id="body">
+<div id="normalStuff"><h1 id="header">Text Editor</h1>
+<div href="\words.html" id="wordsFrame">test</div>
+<div class="colapse" id="textareadiv">
+<textarea id="textbox" onchange = "saveFile(\"!Auto\")">
+atstgdsg
+</textarea>
+<table id="inputTable">
+	<tr>
+		<!--
+		<th><input type="text" id="saveOpenField"></input></th>
+		<th><input type="button" id="saveButton" onclick="saveFile(document.getElementById(\"saveOpenField\").value)" value="Save"></input></th>
+		<th><input type="button" id="openButton" onclick="openFile(document.getElementById(\"saveOpenField\").value)" value="Open"></input></th>
+		-->
+		<th><input type="button" id="printButton" onclick="printFile()" value="Print"></input></th>
+	</tr>
+	
+</table>
+</div>
+
+
+<script type="Text/JavaScript">
+var textbox=document.getElementById("textbox");
+//document.write("<br>");
+//localStorage.setItem("!Auto","helllo");
+openFile("!Auto");
+//window.onbeforeunload = localStorage.setItem("!Auto",textbox.value);
+
+//setInterval(function(){saveFile("!Auto");},10000); //saveFile("!Auto")
+/*
+function checkSpelling() {
+	var i;
+	var data = textbox.value;
+	for (i=0; i<data.length; i++)
+	{
+		data.
+	}
+
+}*/
+
+function printFile() {
+	alert("Click on the text to go back.");
+	saveFile("!Auto");
+	//document.getElementById("textbox").style.display = "none";	
+	/*document.getElementById("body").style.background = "white";
+	document.getElementById("textbox").style.display = "none";
+	document.getElementById("footerbar").style.display = "none";
+	document.getElementById("inputTable").style.display = "none";
+	document.getElementById("header").style.display = "none";
+	document.getElementById("notes").style.display = "none";
+	document.getElementById("printStuff").style.display = "block";
+	document.getElementById("footer").style.display = "none";
+	document.getElementById("textareadiv").style.display = "none";*/
+	
+	document.getElementById("body").style.background = "white";
+	document.getElementById("printStuff").style.display = "block";
+	document.getElementById("normalStuff").style.display = "none";
+	
+	document.getElementById("printStuff").innerHTML = document.getElementById("textbox").value;
+	window.print();
+	//document.getElementById("printStuff").onclick=goBack();
+}
+
+//document.getElementById("printButton").onclick=
+function goBack() {
+	//document.getElementById("body").style.display = "block";
+	/*
+	document.getElementById("body").style.background = null;
+	document.getElementById("textbox").style.display = "block";
+	document.getElementById("footerbar").style.display = "block";
+	document.getElementById("inputTable").style.display = "block";
+	document.getElementById("header").style.display = "block";
+	document.getElementById("notes").style.display = "block";
+	document.getElementById("printStuff").style.display = "none";
+	document.getElementById("footer").style.display = "block";
+	document.getElementById("textareadiv").style.display = null;
+	*/
+	document.getElementById("body").style.background = null;
+	document.getElementById("printStuff").style.display = "none";
+	document.getElementById("normalStuff").style.display = "block";
+}
+function saveFile(name){
+	if(typeof(Storage)==undefined)
+	{
+		alert("Progress will not be saved. Your browser does not support localStorage.");
+	}
+	else
+	{
+		localStorage.setItem(name,textbox.value);
+	}
+}
+function openFile(name){
+	if(typeof(Storage)==undefined)
+	{
+		alert("Progress will not be saved. Your browser does not support localStorage.");
+	}
+	else
+	{
+		if (localStorage.getItem(name)!==null)
+		{
+			textbox.value=localStorage.getItem(name);
+		}
+	}
+}
+/*
+document.write(textbox.value);
+document.write("all works");
+*/
+</script>
+<div id="notes"><br>Note: This program uses memory on your browser in the form of localStorage. It also uses pop-ups. You use this software at your own risk. This is experimental and should not be used for any secure information. It is possible for other pages on the domain, to harvest the information saved. Saves are automatic to prevent loss of data. Use at your own risk.</div>
+<hr id="footerbar"><div id="footer">(c) Copyright. Mason Brothers. 2014. All Rights Reserved.</div></div>
+<pre><code><div id="printStuff" onclick="goBack()"></div></code></pre>
+</body></html>
