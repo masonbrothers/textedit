@@ -5,6 +5,8 @@
 <meta name="author" content="Mason Brothers">
 <meta name="viewport" content="width=device-width, user-scalable=no">
 
+<link rel="apple-touch-icon" href="/docicon.png">
+<link rel="icon" type="image/png"  href="/docicon.png">
 
 <style>
 h1 {
@@ -66,10 +68,9 @@ p {
 <title>Text Editor</title></head>
 <body id="body">
 <div id="normalStuff"><h1 id="header">Text Editor</h1>
-<div href="\words.html" id="wordsFrame">test</div>
 <div class="colapse" id="textareadiv">
 <textarea id="textbox" onchange = "saveFile(\"!Auto\")">
-atstgdsg
+Put Your Text Here!
 </textarea>
 <table id="inputTable">
 	<tr>
@@ -84,15 +85,16 @@ atstgdsg
 </table>
 </div>
 
-
-<script type="Text/JavaScript">
+<div id="notes"><br>Note: This program uses memory on your browser in the form of localStorage. It also uses pop-ups. You use this software at your own risk. This is experimental and should not be used for any secure information. It is possible for other pages to harvest the information saved. Saves are automatic<span id="time"></span> to prevent loss of data. Use at your own risk.</div>
+<script type="Text/JavaScript" defer>
+var intervalMili = 10000;
 var textbox=document.getElementById("textbox");
 //document.write("<br>");
 //localStorage.setItem("!Auto","helllo");
 openFile("!Auto");
 //window.onbeforeunload = localStorage.setItem("!Auto",textbox.value);
 
-//setInterval(function(){saveFile("!Auto");},10000); //saveFile("!Auto")
+setInterval(function(){saveFile("!Auto");},intervalMili); //saveFile("!Auto")
 /*
 function checkSpelling() {
 	var i;
@@ -172,8 +174,10 @@ function openFile(name){
 document.write(textbox.value);
 document.write("all works");
 */
+
+document.getElementById("time").innerHTML = " (occuring every " + intervalMili/1000 + " seconds)";
 </script>
-<div id="notes"><br>Note: This program uses memory on your browser in the form of localStorage. It also uses pop-ups. You use this software at your own risk. This is experimental and should not be used for any secure information. It is possible for other pages on the domain, to harvest the information saved. Saves are automatic to prevent loss of data. Use at your own risk.</div>
-<hr id="footerbar"><div id="footer">(c) Copyright. Mason Brothers. 2014. All Rights Reserved.</div></div>
+
+<hr id="footerbar"><div id="footer">(c) Copyright. Mason Brothers. 2015. All Rights Reserved.</div></div>
 <pre><code><div id="printStuff" onclick="goBack()"></div></code></pre>
 </body></html>
